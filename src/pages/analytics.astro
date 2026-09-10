@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Unified Analytics & Reporting" activePage="analytics">
+  <!-- Page Header -->
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-yellow-light border border-brand-yellow/40 text-xs text-brand-yellow-dark font-semibold mb-2">
+        <span>📈</span>
+        <span>Cross-Product Telemetry & System Analytics</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-ink tracking-tight">Unified Analytics & Reporting</h1>
+      <p class="text-slate-600 text-sm mt-1">Holistic performance metrics across document pipelines, ATS scoring, and classroom rosters.</p>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <select class="input-base text-xs font-semibold py-2">
+        <option>Past 30 Days (Aug 10 - Sep 10)</option>
+        <option>Past 7 Days</option>
+        <option>Current Academic Semester</option>
+        <option>All Time</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- KPI Overview -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="card-hover p-5">
+      <div class="text-xs text-slate-500 font-semibold mb-1">Total Document IO</div>
+      <div class="text-3xl font-extrabold text-ink font-mono">1,428</div>
+      <div class="text-[11px] text-emerald-700 font-bold mt-1">↑ 24% vs last month</div>
+    </div>
+    <div class="card-hover p-5">
+      <div class="text-xs text-slate-500 font-semibold mb-1">Average ATS Match Rate</div>
+      <div class="text-3xl font-extrabold text-brand-blue font-mono">84.2%</div>
+      <div class="text-[11px] text-emerald-700 font-bold mt-1">↑ 6.4% higher keyword alignment</div>
+    </div>
+    <div class="card-hover p-5">
+      <div class="text-xs text-slate-500 font-semibold mb-1">Campus Attendance Rate</div>
+      <div class="text-3xl font-extrabold text-emerald-700 font-mono">92.4%</div>
+      <div class="text-[11px] text-slate-500 font-medium mt-1">184 active enrolled students</div>
+    </div>
+    <div class="card-hover p-5">
+      <div class="text-xs text-slate-500 font-semibold mb-1">Curriculum Pace Index</div>
+      <div class="text-3xl font-extrabold text-brand-moss-dark font-mono">100%</div>
+      <div class="text-[11px] text-emerald-700 font-bold mt-1">0 delayed milestones</div>
+    </div>
+  </div>
+
+  <!-- Charts & Visual Distribution Section -->
+  <div class="grid lg:grid-cols-2 gap-6 mb-8">
+    <!-- PDF Tools Breakdown -->
+    <div class="card-base p-6">
+      <h3 class="font-bold text-sm text-ink mb-4 flex items-center justify-between">
+        <span>📄 PDF Tool Usage Volume</span>
+        <span class="text-xs text-slate-500 font-medium">Total: 1,428 Operations</span>
+      </h3>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <div class="flex justify-between text-slate-700 font-medium mb-1.5">
+            <span>Smart Vector Compress</span>
+            <span class="font-mono text-brand-blue font-bold">542 ops (38%)</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-hairline">
+            <div class="bg-brand-blue h-full w-[38%] rounded-full"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-slate-700 font-medium mb-1.5">
+            <span>Merge PDFs</span>
+            <span class="font-mono text-brand-moss-dark font-bold">410 ops (29%)</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-hairline">
+            <div class="bg-brand-teal h-full w-[29%] rounded-full"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-slate-700 font-medium mb-1.5">
+            <span>Watermark & Stamp</span>
+            <span class="font-mono text-emerald-700 font-bold">240 ops (17%)</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-hairline">
+            <div class="bg-brand-success h-full w-[17%] rounded-full"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-slate-700 font-medium mb-1.5">
+            <span>OCR & Text Extraction</span>
+            <span class="font-mono text-brand-coral-dark font-bold">236 ops (16%)</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-hairline">
+            <div class="bg-brand-coral h-full w-[16%] rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendance Performance Distribution -->
+    <div class="card-base p-6">
+      <h3 class="font-bold text-sm text-ink mb-4 flex items-center justify-between">
+        <span>📋 Course Attendance Distribution</span>
+        <span class="text-xs text-slate-500 font-medium">4 Active Subjects</span>
+      </h3>
+
+      <div class="space-y-3.5 text-xs">
+        <div class="p-3.5 bg-surface rounded-xl border border-hairline flex items-center justify-between">
+          <div>
+            <div class="font-bold text-ink">CS-301 Data Structures</div>
+            <div class="text-[10px] text-slate-500 font-medium">45 Students • Mon/Wed</div>
+          </div>
+          <div class="text-right">
+            <span class="text-emerald-700 font-bold font-mono text-sm">93.3%</span>
+            <span class="text-[10px] text-emerald-700 font-semibold block">Excellent</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 bg-surface rounded-xl border border-hairline flex items-center justify-between">
+          <div>
+            <div class="font-bold text-ink">CS-302 Operating Systems</div>
+            <div class="text-[10px] text-slate-500 font-medium">42 Students • Tue/Thu</div>
+          </div>
+          <div class="text-right">
+            <span class="text-emerald-700 font-bold font-mono text-sm">91.8%</span>
+            <span class="text-[10px] text-emerald-700 font-semibold block">On Target</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 bg-surface rounded-xl border border-hairline flex items-center justify-between">
+          <div>
+            <div class="font-bold text-ink">AI-401 Machine Learning</div>
+            <div class="text-[10px] text-slate-500 font-medium">38 Students • Fri</div>
+          </div>
+          <div class="text-right">
+            <span class="text-brand-blue font-bold font-mono text-sm">89.4%</span>
+            <span class="text-[10px] text-brand-blue font-semibold block">Good</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
