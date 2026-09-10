@@ -1,0 +1,29 @@
+---
+import { SignIn } from '@clerk/astro/components';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In — SynapseFlow</title>
+  </head>
+  <body class="bg-surface-soft min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white p-6 rounded-2xl shadow-modal border border-hairline flex flex-col items-center">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-yellow flex items-center justify-center text-ink font-bold shadow-sm">
+          <svg class="w-6 h-6 text-ink" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-bold text-lg text-ink">SynapseFlow Cloud OS</h1>
+          <p class="text-xs text-slate-500">Sign in with Clerk Authentication</p>
+        </div>
+      </div>
+      <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" />
+    </div>
+  </body>
+</html>

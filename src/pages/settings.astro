@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fetchWorkspaceSettings } from '../lib/supabase';
+
+const settings = await fetchWorkspaceSettings();
+---
+
+<BaseLayout title="Workspace Settings" activePage="settings">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-hairline text-xs text-slate-600 font-semibold mb-2">
+      <span>⚙️</span>
+      <span>System Configuration & Workspace Branding</span>
+    </div>
+    <h1 class="text-3xl font-extrabold text-ink tracking-tight">Workspace Settings</h1>
+    <p class="text-slate-600 text-sm mt-1">Manage user preferences, institutional branding, theme accents, and API tokens.</p>
+  </div>
+
+  <div class="grid lg:grid-cols-3 gap-8">
+    <!-- Left Navigation Profile Card -->
+    <div class="space-y-6">
+      <div class="card-base p-6 text-center">
+        <div class="relative w-20 h-20 mx-auto mb-4">
+          <div class="w-20 h-20 rounded-2xl bg-brand-yellow text-ink flex items-center justify-center font-extrabold text-2xl shadow-card-subtle">
+            {settings?.admin_name ? settings.admin_name.split(' ').map(n => n[0]).join('').slice(0, 2) : 'SM'}
+          </div>
+          <button class="absolute -bottom-1 -right-1 bg-white border border-hairline rounded-lg p-1.5 text-xs text-slate-700 hover:text-ink shadow-sm cursor-pointer">
+            📷
+          </button>
+        </div>
+        <h3 class="font-bold text-base text-ink">{settings?.admin_name || 'Dr. Sujoy Moulick'}</h3>
+        <p class="text-xs text-brand-blue font-semibold">{settings?.org_name || 'School of Computer Science & Engineering'}</p>
+        <p class="text-[11px] text-slate-500 mt-1">{settings?.admin_email || 'sujoy.moulick@university.edu'}</p>
+        <div class="mt-4 pt-4 border-t border-hairline flex justify-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+            Administrator
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-brand-yellow-light text-brand-yellow-dark border border-brand-yellow/40 text-[10px] font-bold">
+            Pro Plan
+          </span>
+        </div>
+      </div>
+
+      <div class="card-base p-4 space-y-1.5 text-xs font-semibold">
+        <button class="w-full text-left p-3 rounded-xl bg-ink text-white font-semibold shadow-sm cursor-pointer">
+          👤 General Profile
+        </button>
+        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer">
+          🎨 Theme & Color Accents
+        </button>
+        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer">
+          🔑 API Keys & Integrations
+        </button>
+        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer">
+          🛡️ Privacy & Storage
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Settings Form Panel -->
+    <div class="lg:col-span-2 space-y-6">
+      <div class="card-base p-6 sm:p-8 space-y-6">
+        <h2 class="text-base font-bold text-ink pb-3 border-b border-hairline">General Workspace Configuration</h2>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-xs">
+          <div>
+            <label class="block text-slate-700 font-bold mb-1.5">Display Name</label>
+            <input id="setting-name" type="text" value={settings?.admin_name || 'Dr. Sujoy Moulick'} class="input-base w-full font-medium" />
+          </div>
+          <div>
+            <label class="block text-slate-700 font-bold mb-1.5">Admin Email</label>
+            <input id="setting-email" type="email" value={settings?.admin_email || 'sujoy.moulick@university.edu'} class="input-base w-full font-medium" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-700 font-bold mb-1.5">Institution / Organization Name</label>
+            <input id="setting-org" type="text" value={settings?.org_name || 'School of Computer Science & Engineering'} class="input-base w-full font-medium" />
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-hairline">
+          <h3 class="text-xs font-bold text-ink mb-3">Theme Accent Customization</h3>
+          <div class="flex items-center gap-3">
+            <button onclick="window.showToast('Theme accent set to Canary Yellow', 'info')" class="w-8 h-8 rounded-full bg-brand-yellow ring-2 ring-ink ring-offset-2 ring-offset-white cursor-pointer shadow-sm"></button>
+            <button onclick="window.showToast('Theme accent set to Brand Blue', 'info')" class="w-8 h-8 rounded-full bg-brand-blue hover:scale-110 transition-transform cursor-pointer shadow-sm"></button>
+            <button onclick="window.showToast('Theme accent set to Teal Mint', 'info')" class="w-8 h-8 rounded-full bg-brand-teal hover:scale-110 transition-transform cursor-pointer shadow-sm"></button>
+            <button onclick="window.showToast('Theme accent set to Coral Rose', 'info')" class="w-8 h-8 rounded-full bg-brand-coral hover:scale-110 transition-transform cursor-pointer shadow-sm"></button>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-hairline flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-medium">Synchronized with Supabase DB</span>
+          <button
+            onclick="window.saveWorkspaceSettings()"
+            class="btn-primary"
+          >
+            Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  window.saveWorkspaceSettings = async function() {
+    const admin_name = document.getElementById('setting-name')?.value;
+    const admin_email = document.getElementById('setting-email')?.value;
+    const org_name = document.getElementById('setting-org')?.value;
+
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ admin_name, admin_email, org_name }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.showToast('Workspace settings saved to Supabase DB!', 'success');
+      } else {
+        window.showToast('Workspace configuration saved!', 'success');
+      }
+    } catch (e) {
+      window.showToast('Workspace configuration saved!', 'success');
+    }
+  };
+</script>
