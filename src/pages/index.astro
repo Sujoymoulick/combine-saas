@@ -54,58 +54,420 @@ import '../styles/global.css';
     </header>
 
     <!-- Hero Section (DESIGN.md hero-band-marketing) -->
-    <section class="relative pt-20 pb-20 px-6 text-center max-w-5xl mx-auto">
-      <!-- Tag Chip (DESIGN.md badge-tag-yellow) -->
-      <div class="inline-flex items-center gap-2 bg-brand-yellow-light border border-brand-yellow/40 rounded-full px-4 py-1.5 text-xs text-brand-yellow-dark font-semibold mb-8 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-brand-yellow-deep animate-pulse"></span>
-        <span>SynapseFlow OS 2.4</span>
-        <span class="text-brand-yellow-dark/40">•</span>
-        <span class="text-ink font-medium">Four Essential Systems, One Single Canvas</span>
+    <section class="hero-section relative overflow-hidden pt-24 pb-28 px-6">
+      <!-- Animated Gradient Mesh Background -->
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="hero-gradient-orb hero-gradient-orb-1"></div>
+        <div class="hero-gradient-orb hero-gradient-orb-2"></div>
+        <div class="hero-gradient-orb hero-gradient-orb-3"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(0,0,0,0.03)_1px,_transparent_0)] bg-[length:32px_32px]"></div>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-ink tracking-tight leading-[1.08] mb-6">
-        The Visual Operating System for <br />
-        <span class="underline decoration-brand-yellow decoration-wavy decoration-2">Documents, ATS & Academics</span>
-      </h1>
+      <div class="relative max-w-6xl mx-auto">
+        <!-- Top: Text Content -->
+        <div class="text-center max-w-4xl mx-auto">
+          <!-- Tag Chip (DESIGN.md badge-tag-yellow) -->
+          <div class="hero-fade-in hero-fade-in-1 inline-flex items-center gap-2.5 bg-white/80 backdrop-blur-sm border border-brand-yellow/30 rounded-full px-5 py-2 text-xs text-brand-yellow-dark font-semibold mb-10 shadow-sm hover:shadow-md hover:border-brand-yellow/60 transition-all duration-300 cursor-default">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow-deep opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-yellow-deep"></span>
+            </span>
+            <span>SynapseFlow OS 2.4</span>
+            <span class="w-px h-3 bg-brand-yellow/30"></span>
+            <span class="text-ink font-medium">Four Systems, One Canvas</span>
+          </div>
 
-      <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-        Eliminate tool fragmentation. SynapseFlow unites high-performance <strong>PDF Manipulation</strong>, 
-        <strong>AI-powered ATS Resume Scoring</strong>, <strong>Campus Attendance Tracking</strong>, and <strong>Faculty Academic Diaries</strong> into a lightning-fast visual workspace.
-      </p>
+          <h1 class="hero-fade-in hero-fade-in-2 text-4xl sm:text-6xl md:text-[5rem] font-extrabold text-ink tracking-tight leading-[1.06] mb-7">
+            Your Entire Workflow,
+            <br class="hidden sm:block" />
+            <span class="hero-headline-gradient">Unified & Supercharged</span>
+          </h1>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-        <a href="/dashboard" class="w-full sm:w-auto btn-primary text-sm px-8 py-3.5 shadow-mockup">
-          <span>Launch Unified Command Center</span>
-          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
-        <a href="#playground" class="w-full sm:w-auto btn-secondary text-sm px-8 py-3.5">
-          <span>Test Interactive Sandbox</span>
-          <span class="text-xs text-slate-400 font-mono ml-2">⌘K</span>
-        </a>
-      </div>
+          <p class="hero-fade-in hero-fade-in-3 text-base sm:text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+            Stop juggling tools. SynapseFlow brings <strong class="text-slate-700">PDF Studio</strong>, 
+            <strong class="text-slate-700">ATS Resume AI</strong>, <strong class="text-slate-700">Attendance Tracking</strong>, 
+            and <strong class="text-slate-700">Faculty Diaries</strong> into one lightning-fast workspace.
+          </p>
 
-      <!-- Quick Stats Bar (DESIGN.md card-stat) -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-white border border-hairline rounded-2xl max-w-4xl mx-auto shadow-card">
-        <div class="text-center p-2">
-          <div class="text-3xl sm:text-4xl font-extrabold text-ink">99.98%</div>
-          <div class="text-xs text-slate-500 font-medium mt-1">Uptime SLA</div>
+          <!-- CTA Buttons -->
+          <div class="hero-fade-in hero-fade-in-4 flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <a href="/dashboard" class="hero-cta-primary group w-full sm:w-auto">
+              <span>Start Building Free</span>
+              <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            <a href="#playground" class="hero-cta-secondary group w-full sm:w-auto">
+              <svg class="w-4 h-4 mr-2 text-slate-400 group-hover:text-brand-blue transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+              </svg>
+              <span>Watch Demo</span>
+              <span class="text-[10px] text-slate-400 font-mono ml-2 px-1.5 py-0.5 bg-surface rounded border border-hairline">2:30</span>
+            </a>
+          </div>
+
+          <!-- Micro social proof -->
+          <div class="hero-fade-in hero-fade-in-5 flex items-center justify-center gap-3 text-xs text-slate-400 mb-16">
+            <div class="flex -space-x-2">
+              <div class="w-7 h-7 rounded-full bg-brand-yellow-light border-2 border-white flex items-center justify-center text-[10px] font-bold text-brand-yellow-dark">S</div>
+              <div class="w-7 h-7 rounded-full bg-brand-blue/10 border-2 border-white flex items-center justify-center text-[10px] font-bold text-brand-blue">A</div>
+              <div class="w-7 h-7 rounded-full bg-brand-teal/10 border-2 border-white flex items-center justify-center text-[10px] font-bold text-brand-teal">R</div>
+              <div class="w-7 h-7 rounded-full bg-brand-coral/20 border-2 border-white flex items-center justify-center text-[10px] font-bold text-red-400">M</div>
+            </div>
+            <span class="text-slate-500 font-medium">Trusted by <strong class="text-ink">2,400+</strong> educators & professionals</span>
+            <div class="flex items-center gap-0.5 text-brand-yellow-deep">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            </div>
+          </div>
         </div>
-        <div class="text-center p-2 border-l border-hairline">
-          <div class="text-3xl sm:text-4xl font-extrabold text-brand-blue">7-in-1</div>
-          <div class="text-xs text-slate-500 font-medium mt-1">PDF Engine Tools</div>
+
+        <!-- Floating Dashboard Mockup -->
+        <div class="hero-fade-in hero-fade-in-6 relative max-w-5xl mx-auto">
+          <!-- Floating tool pills that orbit the mockup -->
+          <div class="hidden md:block absolute -left-6 top-12 hero-float-pill hero-float-delay-1 z-20">
+            <div class="flex items-center gap-2 bg-white border border-hairline rounded-full px-4 py-2 shadow-lg shadow-black/5 text-xs font-semibold text-ink">
+              <span class="w-6 h-6 rounded-lg bg-brand-yellow-light flex items-center justify-center">
+                <svg class="w-3.5 h-3.5 text-brand-yellow-deep" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+              </span>
+              PDF Studio
+            </div>
+          </div>
+          <div class="hidden md:block absolute -right-4 top-24 hero-float-pill hero-float-delay-2 z-20">
+            <div class="flex items-center gap-2 bg-white border border-hairline rounded-full px-4 py-2 shadow-lg shadow-black/5 text-xs font-semibold text-ink">
+              <span class="w-6 h-6 rounded-lg bg-brand-blue/10 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+              </span>
+              ATS Resume AI
+            </div>
+          </div>
+          <div class="hidden md:block absolute -left-2 bottom-20 hero-float-pill hero-float-delay-3 z-20">
+            <div class="flex items-center gap-2 bg-white border border-hairline rounded-full px-4 py-2 shadow-lg shadow-black/5 text-xs font-semibold text-ink">
+              <span class="w-6 h-6 rounded-lg bg-brand-teal/10 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5 text-brand-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+              </span>
+              Attendance
+            </div>
+          </div>
+          <div class="hidden md:block absolute right-8 bottom-16 hero-float-pill hero-float-delay-4 z-20">
+            <div class="flex items-center gap-2 bg-white border border-hairline rounded-full px-4 py-2 shadow-lg shadow-black/5 text-xs font-semibold text-ink">
+              <span class="w-6 h-6 rounded-lg bg-brand-rose/40 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+              </span>
+              Faculty Diary
+            </div>
+          </div>
+
+          <!-- Main mockup window -->
+          <div class="hero-mockup-container rounded-2xl sm:rounded-3xl border border-hairline/80 bg-white shadow-2xl shadow-black/8 overflow-hidden">
+            <!-- Window chrome bar -->
+            <div class="flex items-center justify-between px-5 py-3 bg-surface/80 border-b border-hairline">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-400/70"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400/70"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400/70"></div>
+              </div>
+              <div class="flex items-center gap-2 bg-white rounded-lg border border-hairline px-3 py-1.5 text-[11px] text-slate-400 font-mono w-64 justify-center">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582" /></svg>
+                app.synapseflow.io/dashboard
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="w-5 h-5 rounded bg-surface border border-hairline"></div>
+                <div class="w-5 h-5 rounded bg-surface border border-hairline"></div>
+              </div>
+            </div>
+
+            <!-- Dashboard mockup content -->
+            <div class="p-4 sm:p-6 bg-gradient-to-b from-surface/50 to-white">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                <!-- PDF Studio Card -->
+                <div class="group rounded-2xl p-4 bg-brand-yellow-light/50 border border-brand-yellow/20 hover:border-brand-yellow/50 transition-all duration-300 hover:-translate-y-0.5">
+                  <div class="w-10 h-10 rounded-xl bg-brand-yellow/30 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-brand-yellow-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+                  </div>
+                  <div class="text-xs font-bold text-ink mb-1">PDF Studio</div>
+                  <div class="text-[10px] text-slate-500 leading-snug">Merge, split, compress & watermark</div>
+                  <div class="mt-3 flex items-center gap-1">
+                    <div class="h-1 rounded-full bg-brand-yellow-deep w-3/4"></div>
+                    <span class="text-[9px] font-mono text-brand-yellow-dark">7 tools</span>
+                  </div>
+                </div>
+                <!-- ATS Resume AI Card -->
+                <div class="group rounded-2xl p-4 bg-brand-blue/5 border border-brand-blue/10 hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-0.5">
+                  <div class="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                  </div>
+                  <div class="text-xs font-bold text-ink mb-1">ATS Resume AI</div>
+                  <div class="text-[10px] text-slate-500 leading-snug">AI keyword scoring & match rate</div>
+                  <div class="mt-3 flex items-center gap-1">
+                    <div class="h-1 rounded-full bg-brand-blue w-4/5"></div>
+                    <span class="text-[9px] font-mono text-brand-blue">94%</span>
+                  </div>
+                </div>
+                <!-- Attendance Card -->
+                <div class="group rounded-2xl p-4 bg-brand-teal/5 border border-brand-teal/10 hover:border-brand-teal/30 transition-all duration-300 hover:-translate-y-0.5">
+                  <div class="w-10 h-10 rounded-xl bg-brand-teal/10 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-brand-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                  </div>
+                  <div class="text-xs font-bold text-ink mb-1">Attendance</div>
+                  <div class="text-[10px] text-slate-500 leading-snug">Campus tracking & export</div>
+                  <div class="mt-3 flex items-center gap-1">
+                    <div class="h-1 rounded-full bg-brand-teal w-[93%]"></div>
+                    <span class="text-[9px] font-mono text-brand-teal">93%</span>
+                  </div>
+                </div>
+                <!-- Faculty Diary Card -->
+                <div class="group rounded-2xl p-4 bg-pink-50/60 border border-pink-200/30 hover:border-pink-300/50 transition-all duration-300 hover:-translate-y-0.5">
+                  <div class="w-10 h-10 rounded-xl bg-pink-100/60 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+                  </div>
+                  <div class="text-xs font-bold text-ink mb-1">Faculty Diary</div>
+                  <div class="text-[10px] text-slate-500 leading-snug">Syllabus, mentorship & notes</div>
+                  <div class="mt-3 flex items-center gap-1">
+                    <div class="h-1 rounded-full bg-pink-400 w-[60%]"></div>
+                    <span class="text-[9px] font-mono text-pink-500">active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom gradient fade on mockup -->
+          <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none rounded-b-3xl"></div>
         </div>
-        <div class="text-center p-2 border-l border-hairline">
-          <div class="text-3xl sm:text-4xl font-extrabold text-brand-teal">&lt;20ms</div>
-          <div class="text-xs text-slate-500 font-medium mt-1">Client-side Latency</div>
-        </div>
-        <div class="text-center p-2 border-l border-hairline">
-          <div class="text-3xl sm:text-4xl font-extrabold text-brand-success">100%</div>
-          <div class="text-xs text-slate-500 font-medium mt-1">Privacy Compliant</div>
+
+        <!-- Quick Stats Bar (DESIGN.md card-stat) -->
+        <div class="hero-fade-in hero-fade-in-7 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-5 sm:p-6 bg-white/90 backdrop-blur-sm border border-hairline rounded-2xl max-w-4xl mx-auto -mt-10 relative z-10 shadow-lg shadow-black/5">
+          <div class="text-center p-2 sm:p-3">
+            <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink hero-stat" data-target="99.98" data-suffix="%">0%</div>
+            <div class="text-[10px] sm:text-xs text-slate-500 font-medium mt-1 uppercase tracking-wider">Uptime SLA</div>
+          </div>
+          <div class="text-center p-2 sm:p-3 border-l border-hairline">
+            <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-blue">7-in-1</div>
+            <div class="text-[10px] sm:text-xs text-slate-500 font-medium mt-1 uppercase tracking-wider">PDF Engine</div>
+          </div>
+          <div class="text-center p-2 sm:p-3 border-l border-hairline">
+            <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-teal hero-stat" data-target="20" data-prefix="<" data-suffix="ms">0ms</div>
+            <div class="text-[10px] sm:text-xs text-slate-500 font-medium mt-1 uppercase tracking-wider">Latency</div>
+          </div>
+          <div class="text-center p-2 sm:p-3 border-l border-hairline">
+            <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-success hero-stat" data-target="100" data-suffix="%">0%</div>
+            <div class="text-[10px] sm:text-xs text-slate-500 font-medium mt-1 uppercase tracking-wider">Privacy Safe</div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Hero Section Styles -->
+    <style>
+      /* Gradient mesh background orbs */
+      .hero-gradient-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.5;
+      }
+      .hero-gradient-orb-1 {
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(255, 208, 47, 0.3), transparent 70%);
+        top: -200px; left: -100px;
+        animation: hero-orb-drift-1 20s ease-in-out infinite;
+      }
+      .hero-gradient-orb-2 {
+        width: 500px; height: 500px;
+        background: radial-gradient(circle, rgba(66, 98, 255, 0.15), transparent 70%);
+        top: 100px; right: -150px;
+        animation: hero-orb-drift-2 25s ease-in-out infinite;
+      }
+      .hero-gradient-orb-3 {
+        width: 400px; height: 400px;
+        background: radial-gradient(circle, rgba(15, 188, 176, 0.15), transparent 70%);
+        bottom: -100px; left: 30%;
+        animation: hero-orb-drift-3 22s ease-in-out infinite;
+      }
+
+      @keyframes hero-orb-drift-1 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(60px, 30px) scale(1.1); }
+        66% { transform: translate(-30px, 50px) scale(0.95); }
+      }
+      @keyframes hero-orb-drift-2 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(-40px, 40px) scale(1.05); }
+        66% { transform: translate(50px, -20px) scale(0.9); }
+      }
+      @keyframes hero-orb-drift-3 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(40px, -30px) scale(1.1); }
+      }
+
+      /* Headline gradient text */
+      .hero-headline-gradient {
+        background: linear-gradient(135deg, #1c1c1e 0%, #4262ff 40%, #0fbcb0 70%, #ffd02f 100%);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: hero-gradient-shift 6s ease-in-out infinite;
+      }
+      @keyframes hero-gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      /* Staggered fade-in entrance animations */
+      .hero-fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .hero-fade-in-1 { animation-delay: 0.1s; }
+      .hero-fade-in-2 { animation-delay: 0.2s; }
+      .hero-fade-in-3 { animation-delay: 0.35s; }
+      .hero-fade-in-4 { animation-delay: 0.5s; }
+      .hero-fade-in-5 { animation-delay: 0.6s; }
+      .hero-fade-in-6 { animation-delay: 0.7s; }
+      .hero-fade-in-7 { animation-delay: 0.9s; }
+
+      @keyframes hero-enter {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Floating pill animation */
+      .hero-float-pill {
+        animation: hero-float 6s ease-in-out infinite;
+      }
+      .hero-float-delay-1 { animation-delay: 0s; }
+      .hero-float-delay-2 { animation-delay: 1.5s; }
+      .hero-float-delay-3 { animation-delay: 3s; }
+      .hero-float-delay-4 { animation-delay: 4.5s; }
+
+      @keyframes hero-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+      }
+
+      /* Primary CTA with glow */
+      .hero-cta-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #1c1c1e;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-radius: 9999px;
+        padding: 0.875rem 2rem;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 0 0 0 rgba(28, 28, 30, 0), 0 4px 16px -2px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+      }
+      .hero-cta-primary:hover {
+        background: #2c2c34;
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px 4px rgba(66, 98, 255, 0.15), 0 8px 24px -4px rgba(0, 0, 0, 0.2);
+      }
+      .hero-cta-primary:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      /* Secondary CTA */
+      .hero-cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: #1c1c1e;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-radius: 9999px;
+        padding: 0.875rem 2rem;
+        border: 1px solid #c7cad5;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+      }
+      .hero-cta-secondary:hover {
+        background: #f7f8fa;
+        border-color: #4262ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px -2px rgba(66, 98, 255, 0.1);
+      }
+      .hero-cta-secondary:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      /* Mockup container perspective */
+      .hero-mockup-container {
+        transform: perspective(2000px) rotateX(2deg);
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .hero-mockup-container:hover {
+        transform: perspective(2000px) rotateX(0deg);
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-gradient-orb,
+        .hero-float-pill,
+        .hero-fade-in,
+        .hero-headline-gradient {
+          animation: none !important;
+        }
+        .hero-fade-in {
+          opacity: 1;
+          transform: none;
+        }
+        .hero-mockup-container {
+          transform: none;
+        }
+      }
+    </style>
+
+    <!-- Hero Stats Counter Script -->
+    <script>
+      // Animate stat numbers on scroll into view
+      const heroStats = document.querySelectorAll('.hero-stat');
+      const observerOptions = { threshold: 0.5 };
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseFloat(el.dataset.target || '0');
+            const prefix = el.dataset.prefix || '';
+            const suffix = el.dataset.suffix || '';
+            const duration = 1500;
+            const startTime = performance.now();
+
+            function animate(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = target * eased;
+
+              if (target === 99.98) {
+                el.textContent = prefix + current.toFixed(2) + suffix;
+              } else {
+                el.textContent = prefix + Math.round(current) + suffix;
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              }
+            }
+            requestAnimationFrame(animate);
+            statsObserver.unobserve(el);
+          }
+        });
+      }, observerOptions);
+
+      heroStats.forEach(stat => statsObserver.observe(stat));
+    </script>
 
     <!-- 4 Core Pillars / Pastel Feature Cards Section (DESIGN.md card-feature variants) -->
     <section id="suite" class="py-20 px-6 max-w-7xl mx-auto">
