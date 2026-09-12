@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,16 +7,21 @@
 @layer base {
   :root {
     --brand-primary: #1c1c1e;
-    --brand-yellow: #ffd02f;
-    --brand-blue: #4262ff;
-    --hairline: #e0e2e8;
+    --brand-yellow: #ffb703;
+    --brand-yellow-light: #fff8e1;
+    --brand-blue: #2563eb;
+    --hairline: #e2e8f0;
     --canvas: #ffffff;
-    --surface: #f7f8fa;
+    --surface: #f8fafc;
   }
 
   * {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     box-sizing: border-box;
+  }
+
+  .font-serif-editorial {
+    font-family: 'Instrument Serif', 'Newsreader', Georgia, serif;
   }
 
   code, pre, .font-mono {
@@ -138,4 +143,64 @@
   .search-pill {
     @apply bg-surface text-slate-600 border border-hairline rounded-full px-4 py-2 text-xs focus:border-brand-blue focus:bg-white outline-none transition-all placeholder:text-muted;
   }
+
+  /* Scroll Reveal & Motion System */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-item.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.93) translateY(20px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-scale.is-revealed {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .stagger-1 { transition-delay: 100ms; }
+  .stagger-2 { transition-delay: 200ms; }
+  .stagger-3 { transition-delay: 300ms; }
+  .stagger-4 { transition-delay: 400ms; }
+  .stagger-5 { transition-delay: 500ms; }
+
+  /* Floating and Pulse Animations */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+
+  @keyframes float-reverse {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(8px) rotate(-1deg); }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: float-reverse 7s ease-in-out infinite;
+  }
+
+  /* Glassmorphic Navbar Pill */
+  .nav-pill-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(224, 226, 232, 0.8);
+    box-shadow: 0 4px 20px -2px rgba(5, 0, 56, 0.05);
+  }
 }
+

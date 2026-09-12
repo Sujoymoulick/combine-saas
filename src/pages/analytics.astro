@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import { getDashboardMetrics, getCourses, getPdfOperations } from '../lib/supabase';
 
 const { userId } = Astro.locals.auth();
@@ -25,7 +26,7 @@ const totalPdfOps = pdfOps.length || 1;
   <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
     <div>
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-yellow-light border border-brand-yellow/40 text-xs text-brand-yellow-dark font-semibold mb-2">
-        <span>📈</span>
+        <Icon name="analytics" size={13} />
         <span>Cross-Product Telemetry & Supabase Analytics</span>
       </div>
       <h1 class="text-3xl font-extrabold text-ink tracking-tight">Unified Analytics & Reporting</h1>
@@ -62,7 +63,10 @@ const totalPdfOps = pdfOps.length || 1;
     <!-- PDF Tools Breakdown -->
     <div class="card-base p-6">
       <h3 class="font-bold text-sm text-ink mb-4 flex items-center justify-between">
-        <span>📄 PDF Tool Usage Volume</span>
+        <span class="flex items-center gap-2">
+          <Icon name="pdf" size={16} class="text-brand-coral" />
+          <span>PDF Tool Usage Volume</span>
+        </span>
         <span class="text-xs text-slate-500 font-medium">Total: {metrics.pdfCount} Operations</span>
       </h3>
 
@@ -85,7 +89,9 @@ const totalPdfOps = pdfOps.length || 1;
         </div>
       ) : (
         <div class="py-12 text-center text-slate-400">
-          <div class="text-3xl mb-2">📄</div>
+          <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400 mb-2">
+            <Icon name="pdf" size={24} />
+          </div>
           <p class="text-xs font-semibold text-ink">No PDF Operations Logged</p>
           <p class="text-[11px] text-slate-500 mt-1">Documents processed in PDF Studio will be tracked here.</p>
         </div>
@@ -95,7 +101,10 @@ const totalPdfOps = pdfOps.length || 1;
     <!-- Attendance Performance Distribution -->
     <div class="card-base p-6">
       <h3 class="font-bold text-sm text-ink mb-4 flex items-center justify-between">
-        <span>📋 Course Attendance Distribution</span>
+        <span class="flex items-center gap-2">
+          <Icon name="attendance" size={16} class="text-brand-yellow-dark" />
+          <span>Course Attendance Distribution</span>
+        </span>
         <span class="text-xs text-slate-500 font-medium">{courses ? courses.length : 0} Active Subjects</span>
       </h3>
 
@@ -116,7 +125,9 @@ const totalPdfOps = pdfOps.length || 1;
         </div>
       ) : (
         <div class="py-12 text-center text-slate-400">
-          <div class="text-3xl mb-2">📋</div>
+          <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400 mb-2">
+            <Icon name="attendance" size={24} />
+          </div>
           <p class="text-xs font-semibold text-ink">No Courses Added in Database</p>
           <p class="text-[11px] text-slate-500 mt-1">Course rosters added in Campus Attendance will appear here.</p>
         </div>

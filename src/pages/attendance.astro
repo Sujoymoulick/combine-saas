@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import { getCourses, getStudentsByCourse, getAttendanceRecords } from '../lib/supabase';
 
 const { userId } = Astro.locals.auth();
@@ -40,7 +41,7 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
   <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
     <div>
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-yellow-light border border-brand-yellow/40 text-xs text-brand-yellow-dark font-semibold mb-2">
-        <span>📋</span>
+        <Icon name="attendance" size={13} />
         <span>Real-Time Campus Ledger • Supabase Database</span>
       </div>
       <h1 class="text-3xl font-extrabold text-ink tracking-tight">Campus Attendance Manager</h1>
@@ -53,13 +54,15 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
         onclick="openAddStudentModal()"
         class="btn-secondary"
       >
-        <span>+ Add Student</span>
+        <Icon name="plus" size={14} class="mr-1.5 inline-block" />
+        <span>Add Student</span>
       </button>
       <button
         onclick="openExportModal()"
         class="btn-primary"
       >
-        <span>📥 Export Report</span>
+        <Icon name="download" size={14} class="mr-1.5 inline-block" />
+        <span>Export Report</span>
       </button>
     </div>
   </div>
@@ -98,21 +101,24 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
     <div class="flex items-center gap-2">
       <button
         id="btn-mark-all-present"
-        class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer"
+        class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer inline-flex items-center gap-1.5"
       >
-        ✓ All Present
+        <Icon name="check" size={13} />
+        <span>All Present</span>
       </button>
       <button
         id="btn-mark-all-absent"
-        class="bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer"
+        class="bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer inline-flex items-center gap-1.5"
       >
-        ✕ All Absent
+        <Icon name="x" size={13} />
+        <span>All Absent</span>
       </button>
       <button
         id="btn-save-attendance"
-        class="btn-primary py-1.5 px-4 text-xs font-bold"
+        class="btn-primary py-1.5 px-4 text-xs font-bold inline-flex items-center gap-1.5"
       >
-        💾 Save to Database
+        <Icon name="check" size={13} />
+        <span>Save to Database</span>
       </button>
     </div>
   </div>
@@ -161,9 +167,9 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
           placeholder="Filter by name or roll number..."
           class="search-pill w-full pl-9"
         />
-        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
+        <div class="absolute left-3 top-2.5 text-slate-400">
+          <Icon name="search" size={16} />
+        </div>
       </div>
 
       <div class="flex items-center gap-2 text-xs">
@@ -246,7 +252,9 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
       </div>
     ) : (
       <div class="p-12 text-center text-slate-500 space-y-4">
-        <div class="text-4xl">📋</div>
+        <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400">
+          <Icon name="attendance" size={24} />
+        </div>
         <h3 class="font-bold text-base text-ink">No Students in Classroom Database</h3>
         <p class="text-xs text-slate-600 max-w-sm mx-auto">
           Enroll your students using the button below to start tracking real-time attendance saved directly into Supabase.
@@ -255,7 +263,8 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
           onclick="openAddStudentModal()"
           class="btn-primary"
         >
-          + Enroll First Student
+          <Icon name="plus" size={14} class="mr-1.5 inline-block" />
+          <span>Enroll First Student</span>
         </button>
       </div>
     )}
@@ -265,8 +274,13 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
   <div id="modal-add-student" class="fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white border border-hairline w-full max-w-md rounded-3xl p-6 shadow-modal">
       <div class="flex items-center justify-between pb-3 border-b border-hairline mb-4">
-        <h3 class="font-bold text-sm text-ink flex items-center gap-2"><span>👤</span> Enroll New Student</h3>
-        <button onclick="closeAddStudentModal()" class="text-slate-400 hover:text-ink font-bold">✕</button>
+        <h3 class="font-bold text-sm text-ink flex items-center gap-2">
+          <Icon name="user" size={16} class="text-brand-blue" />
+          <span>Enroll New Student</span>
+        </h3>
+        <button onclick="closeAddStudentModal()" class="text-slate-400 hover:text-ink font-bold p-1">
+          <Icon name="x" size={16} />
+        </button>
       </div>
       <div class="space-y-3 text-xs mb-6">
         <div>
@@ -282,8 +296,9 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
           <input id="new-student-contact" type="text" placeholder="maya.lin@univ.edu" class="input-base w-full" />
         </div>
       </div>
-      <button onclick="submitNewStudent()" class="w-full btn-primary py-2.5 text-xs">
-        Save to Supabase Database →
+      <button onclick="submitNewStudent()" class="w-full btn-primary py-2.5 text-xs inline-flex items-center justify-center gap-2">
+        <span>Save to Supabase Database</span>
+        <Icon name="arrow-right" size={14} />
       </button>
     </div>
   </div>
@@ -292,8 +307,13 @@ const initialRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 10
   <div id="modal-export" class="fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white border border-hairline w-full max-w-md rounded-3xl p-6 shadow-modal">
       <div class="flex items-center justify-between pb-3 border-b border-hairline mb-4">
-        <h3 class="font-bold text-sm text-ink flex items-center gap-2"><span>📥</span> Export Attendance Ledger</h3>
-        <button onclick="closeExportModal()" class="text-slate-400 hover:text-ink font-bold">✕</button>
+        <h3 class="font-bold text-sm text-ink flex items-center gap-2">
+          <Icon name="download" size={16} class="text-brand-blue" />
+          <span>Export Attendance Ledger</span>
+        </h3>
+        <button onclick="closeExportModal()" class="text-slate-400 hover:text-ink font-bold p-1">
+          <Icon name="x" size={16} />
+        </button>
       </div>
       <div class="space-y-3 text-xs mb-6">
         <label class="p-3 bg-surface border border-hairline rounded-xl flex items-center gap-3 cursor-pointer hover:border-hairline-strong">

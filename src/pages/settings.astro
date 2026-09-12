@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import { getUserProfile } from '../lib/supabase';
 
 const { userId } = Astro.locals.auth();
@@ -19,7 +20,7 @@ const plan = profile?.plan || 'Pro Plan';
   <!-- Page Header -->
   <div class="mb-8">
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-hairline text-xs text-slate-600 font-semibold mb-2">
-      <span>⚙️</span>
+      <Icon name="settings" size={13} />
       <span>System Configuration & Supabase Profile</span>
     </div>
     <h1 class="text-3xl font-extrabold text-ink tracking-tight">Workspace Settings</h1>
@@ -49,14 +50,17 @@ const plan = profile?.plan || 'Pro Plan';
       </div>
 
       <div class="card-base p-4 space-y-1.5 text-xs font-semibold">
-        <button class="w-full text-left p-3 rounded-xl bg-ink text-white font-semibold shadow-sm cursor-pointer">
-          👤 General Profile
+        <button class="w-full text-left p-3 rounded-xl bg-ink text-white font-semibold shadow-sm cursor-pointer flex items-center gap-2.5">
+          <Icon name="user" size={15} />
+          <span>General Profile</span>
         </button>
-        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer">
-          🎨 Theme & Color Accents
+        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer flex items-center gap-2.5">
+          <Icon name="palette" size={15} />
+          <span>Theme & Color Accents</span>
         </button>
-        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer">
-          🔑 Supabase & API Connection
+        <button class="w-full text-left p-3 rounded-xl text-slate-600 hover:text-ink hover:bg-surface transition-colors cursor-pointer flex items-center gap-2.5">
+          <Icon name="key" size={15} />
+          <span>Supabase & API Connection</span>
         </button>
       </div>
     </div>

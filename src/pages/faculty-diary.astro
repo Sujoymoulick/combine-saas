@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import {
   getFacultyTimetable,
   getSyllabusUnits,
@@ -25,7 +26,7 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
   <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
     <div>
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs text-brand-coral-dark font-semibold mb-2">
-        <span>📚</span>
+        <Icon name="diary" size={13} />
         <span>Academic Operations & Mentorship Suite • Supabase DB</span>
       </div>
       <h1 class="text-3xl font-extrabold text-ink tracking-tight">Faculty Academic Diary</h1>
@@ -38,27 +39,33 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
         onclick="openAddRemarkModal()"
         class="btn-primary"
       >
-        <span>+ Add Student Remark</span>
+        <Icon name="plus" size={14} class="mr-1.5 inline-block" />
+        <span>Add Student Remark</span>
       </button>
     </div>
   </div>
 
   <!-- Diary Tabs Navigation (DESIGN.md pill-tab style) -->
   <div class="flex flex-wrap gap-2 pb-4 mb-6 border-b border-hairline">
-    <button data-diary-tab="schedule" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-ink text-white active-diary-tab shadow-sm cursor-pointer">
-      📅 Weekly Timetable ({schedule ? schedule.length : 0})
+    <button data-diary-tab="schedule" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-ink text-white active-diary-tab shadow-sm cursor-pointer inline-flex items-center gap-2">
+      <Icon name="calendar" size={14} />
+      <span>Weekly Timetable ({schedule ? schedule.length : 0})</span>
     </button>
-    <button data-diary-tab="syllabus" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface">
-      📊 Syllabus Coverage ({syllabusUnits ? syllabusUnits.length : 0})
+    <button data-diary-tab="syllabus" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface inline-flex items-center gap-2">
+      <Icon name="analytics" size={14} />
+      <span>Syllabus Coverage ({syllabusUnits ? syllabusUnits.length : 0})</span>
     </button>
-    <button data-diary-tab="remarks" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface">
-      💬 Mentorship & Remarks ({remarks ? remarks.length : 0})
+    <button data-diary-tab="remarks" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface inline-flex items-center gap-2">
+      <Icon name="message-square" size={14} />
+      <span>Mentorship & Remarks ({remarks ? remarks.length : 0})</span>
     </button>
-    <button data-diary-tab="resources" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface">
-      📂 Course Materials ({resources ? resources.length : 0})
+    <button data-diary-tab="resources" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface inline-flex items-center gap-2">
+      <Icon name="folder" size={14} />
+      <span>Course Materials ({resources ? resources.length : 0})</span>
     </button>
-    <button data-diary-tab="research" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface">
-      🔬 Research & Grants ({researchPapers ? researchPapers.length : 0})
+    <button data-diary-tab="research" class="diary-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-hairline text-slate-600 hover:text-ink cursor-pointer hover:bg-surface inline-flex items-center gap-2">
+      <Icon name="microscope" size={14} />
+      <span>Research & Grants ({researchPapers ? researchPapers.length : 0})</span>
     </button>
   </div>
 
@@ -86,7 +93,8 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
                 href="/attendance"
                 class="text-[11px] font-bold text-brand-blue hover:underline flex items-center gap-1"
               >
-                <span>Take Attendance</span> →
+                <span>Take Attendance</span>
+                <Icon name="arrow-right" size={12} />
               </a>
             </div>
           </div>
@@ -94,7 +102,9 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
       </div>
     ) : (
       <div class="card-base p-12 text-center text-slate-500 space-y-3">
-        <div class="text-3xl">📅</div>
+        <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400">
+          <Icon name="calendar" size={24} />
+        </div>
         <h3 class="font-bold text-sm text-ink">No Lecture Timetable Scheduled</h3>
         <p class="text-xs text-slate-600 max-w-sm mx-auto">Your schedule items will be populated from your Supabase faculty_timetable records.</p>
       </div>
@@ -180,7 +190,9 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
         </div>
       ) : (
         <div class="py-12 text-center text-slate-400">
-          <div class="text-3xl mb-2">💬</div>
+          <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400 mb-2">
+            <Icon name="message-square" size={24} />
+          </div>
           <p class="text-xs font-semibold text-ink">No Mentorship Remarks in Database</p>
           <p class="text-[11px] text-slate-500 mt-1">Use the "+ Add Student Remark" button above to log confidential mentorship remarks.</p>
         </div>
@@ -203,7 +215,9 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
           {resources.map((res: any) => (
             <div class="p-4 bg-surface rounded-2xl border border-hairline flex items-center justify-between text-xs hover:border-brand-blue transition-colors">
               <div class="flex items-center gap-3">
-                <span class="text-2xl">📕</span>
+                <div class="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-brand-blue shrink-0">
+                  <Icon name="document" size={18} />
+                </div>
                 <div>
                   <div class="font-bold text-ink">{res.title}</div>
                   <div class="text-[10px] text-slate-500 mt-0.5">{res.course_name} • {res.file_size} • {res.downloads || 0} Downloads</div>
@@ -213,14 +227,16 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
                 onclick="window.showToast('Downloading course resource...', 'info')"
                 class="p-2 text-slate-600 hover:text-ink bg-white hover:bg-surface rounded-xl border border-hairline shadow-card-subtle cursor-pointer"
               >
-                ⬇
+                <Icon name="download" size={14} />
               </button>
             </div>
           ))}
         </div>
       ) : (
         <div class="py-12 text-center text-slate-400">
-          <div class="text-3xl mb-2">📂</div>
+          <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400 mb-2">
+            <Icon name="folder" size={24} />
+          </div>
           <p class="text-xs font-semibold text-ink">No Course Materials Uploaded</p>
           <p class="text-[11px] text-slate-500 mt-1">Course materials will be displayed here from your Supabase course_materials records.</p>
         </div>
@@ -262,7 +278,9 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
         </div>
       ) : (
         <div class="py-12 text-center text-slate-400">
-          <div class="text-3xl mb-2">🔬</div>
+          <div class="w-12 h-12 rounded-2xl bg-surface border border-hairline flex items-center justify-center mx-auto text-slate-400 mb-2">
+            <Icon name="microscope" size={24} />
+          </div>
           <p class="text-xs font-semibold text-ink">No Research Publications Logged</p>
           <p class="text-[11px] text-slate-500 mt-1">Research papers tracked in your research_papers table will appear here.</p>
         </div>
@@ -274,8 +292,13 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
   <div id="modal-remark" class="fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white border border-hairline w-full max-w-md rounded-3xl p-6 shadow-modal">
       <div class="flex items-center justify-between pb-3 border-b border-hairline mb-4">
-        <h3 class="font-bold text-sm text-ink flex items-center gap-2"><span>💬</span> Log Student Remark</h3>
-        <button onclick="closeAddRemarkModal()" class="text-slate-400 hover:text-ink font-bold">✕</button>
+        <h3 class="font-bold text-sm text-ink flex items-center gap-2">
+          <Icon name="message-square" size={16} class="text-brand-blue" />
+          <span>Log Student Remark</span>
+        </h3>
+        <button onclick="closeAddRemarkModal()" class="text-slate-400 hover:text-ink font-bold p-1">
+          <Icon name="x" size={16} />
+        </button>
       </div>
       <div class="space-y-3 text-xs mb-6">
         <div>
@@ -296,8 +319,9 @@ const [schedule, syllabusUnits, remarks, resources, researchPapers] = await Prom
           <textarea id="remark-text" rows="3" placeholder="Enter specific observations or mentoring notes..." class="input-base w-full"></textarea>
         </div>
       </div>
-      <button onclick="submitNewRemark()" class="w-full btn-primary py-2.5 text-xs">
-        Save Remark to Supabase Database →
+      <button onclick="submitNewRemark()" class="w-full btn-primary py-2.5 text-xs inline-flex items-center justify-center gap-2">
+        <span>Save Remark to Supabase Database</span>
+        <Icon name="arrow-right" size={14} />
       </button>
     </div>
   </div>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 ---
 
 <BaseLayout title="ATS Resume Intelligence AI" activePage="ats-checker">
@@ -7,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
     <div>
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs text-brand-moss-dark font-semibold mb-2">
-        <span>🎯</span>
+        <Icon name="target" class="w-3.5 h-3.5 text-brand-moss-dark" />
         <span>Neural ATS Parser • Recruiter Compatibility Algorithm</span>
       </div>
       <h1 class="text-3xl font-extrabold text-ink tracking-tight">ATS Resume Intelligence AI</h1>
@@ -45,7 +46,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- Resume Upload Card -->
       <div class="card-base p-6">
         <h2 class="font-bold text-base text-ink mb-4 flex items-center justify-between">
-          <span class="flex items-center gap-2"><span>📄</span> 1. Upload Resume</span>
+          <span class="flex items-center gap-2">
+            <Icon name="pdf" class="w-4 h-4 text-brand-blue" />
+            <span>1. Upload Resume</span>
+          </span>
           <span class="text-[10px] text-brand-moss-dark font-bold bg-teal-50 border border-teal-200 px-2.5 py-0.5 rounded-full">PDF / DOCX</span>
         </h2>
 
@@ -53,8 +57,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           id="ats-drop-box"
           class="border-2 border-dashed border-hairline-strong hover:border-brand-teal rounded-2xl p-6 text-center cursor-pointer transition-all bg-surface mb-4 group"
         >
-          <div class="w-12 h-12 rounded-2xl bg-white border border-hairline text-brand-teal flex items-center justify-center text-2xl mx-auto mb-2 group-hover:scale-105 transition-transform shadow-card-subtle">
-            📥
+          <div class="w-12 h-12 rounded-2xl bg-white border border-hairline text-brand-teal flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform shadow-card-subtle">
+            <Icon name="upload" class="w-6 h-6" />
           </div>
           <p id="ats-filename-display" class="text-xs font-bold text-ink">Alex_Rivera_Senior_FullStack.pdf</p>
           <p class="text-[10px] text-slate-500 mt-0.5">2 Pages • 142 KB • Parsed Cleanly</p>
@@ -76,9 +80,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <button
           id="btn-scan-ats"
-          class="w-full btn-primary py-3"
+          class="w-full btn-primary py-3 flex items-center justify-center gap-1.5"
         >
-          <span>🔍 Run AI ATS Deep Audit</span>
+          <Icon name="search" class="w-4 h-4" />
+          <span>Run AI ATS Deep Audit</span>
         </button>
       </div>
 
@@ -86,13 +91,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="card-base p-6">
         <div class="flex items-center justify-between mb-3">
           <h3 class="font-bold text-xs text-ink flex items-center gap-2">
-            <span>✨</span> AI Prompt Generator for ChatGPT/Claude
+            <Icon name="sparkles" class="w-4 h-4 text-brand-blue" />
+            <span>AI Prompt Generator for ChatGPT/Claude</span>
           </h3>
           <button
             onclick="copyAiPrompt()"
-            class="text-[10px] font-bold text-brand-blue bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-full cursor-pointer hover:bg-indigo-100"
+            class="text-[10px] font-bold text-brand-blue bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-full cursor-pointer hover:bg-indigo-100 flex items-center gap-1"
           >
-            📋 Copy Prompt
+            <Icon name="copy" class="w-3 h-3" />
+            <span>Copy Prompt</span>
           </button>
         </div>
         <p class="text-[11px] text-slate-600 mb-3">Copy this tailored prompt directly into ChatGPT or Claude to rewrite your resume bullets with missing keywords:</p>
@@ -133,8 +140,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             <div>
               <div class="flex items-center gap-2 mb-1">
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
-                  ✓ High ATS Match
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                  <Icon name="check" class="w-3.5 h-3.5 text-emerald-700" strokeWidth={2.5} />
+                  <span>High ATS Match</span>
                 </span>
               </div>
               <h3 class="text-lg font-bold text-ink">Strong Recruiter Fit</h3>
@@ -195,15 +203,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- Interactive Keywords Comparison Cloud -->
       <div class="card-base p-6">
         <h3 class="font-bold text-sm text-ink mb-4 flex items-center justify-between">
-          <span class="flex items-center gap-2"><span>🏷️</span> Keyword Intelligence & Gap Analysis</span>
+          <span class="flex items-center gap-2">
+            <Icon name="tag" class="w-4 h-4 text-brand-teal" />
+            <span>Keyword Intelligence & Gap Analysis</span>
+          </span>
           <span class="text-xs text-slate-500">Extracted from Job Description</span>
         </h3>
 
         <div class="space-y-4">
           <!-- Matched Keywords -->
           <div>
-            <span class="text-xs font-bold text-emerald-800 block mb-2">
-              ✓ Successfully Matched in Resume (14):
+            <span class="text-xs font-bold text-emerald-800 flex items-center gap-1.5 mb-2">
+              <Icon name="check" size={13} />
+              <span>Successfully Matched in Resume (14):</span>
             </span>
             <div class="flex flex-wrap gap-1.5" id="matched-keywords-box">
               <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">TypeScript</span>
@@ -220,8 +232,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <!-- Missing Keywords -->
           <div>
-            <span class="text-xs font-bold text-rose-800 block mb-2">
-              ⚠ Missing Keywords in Resume (4) — Click to see bullet suggestion:
+            <span class="text-xs font-bold text-rose-800 flex items-center gap-1.5 mb-2">
+              <Icon name="x" size={13} />
+              <span>Missing Keywords in Resume (4) — Click to see bullet suggestion:</span>
             </span>
             <div class="flex flex-wrap gap-1.5" id="missing-keywords-box">
               <button
@@ -256,24 +269,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- Formatting & Sections Checklist -->
       <div class="card-base p-6">
         <h3 class="font-bold text-sm text-ink mb-3 flex items-center gap-2">
-          <span>🛡️</span> ATS Parsability & Section Health Check
+          <Icon name="shield" class="w-4 h-4 text-brand-blue" />
+          <span>ATS Parsability & Section Health Check</span>
         </h3>
         <div class="grid sm:grid-cols-2 gap-2 text-xs">
           <div class="p-3 bg-surface rounded-xl border border-hairline flex items-center justify-between">
             <span class="text-slate-700 font-medium">Contact Email & Phone Linkable</span>
-            <span class="text-emerald-700 font-bold">✓ Pass</span>
+            <span class="flex items-center gap-1 text-emerald-700 font-bold"><Icon name="check" class="w-3.5 h-3.5 text-emerald-700" strokeWidth={2.5} /> Pass</span>
           </div>
           <div class="p-3 bg-surface rounded-xl border border-hairline flex items-center justify-between">
             <span class="text-slate-700 font-medium">Standard Section Headings</span>
-            <span class="text-emerald-700 font-bold">✓ Pass</span>
+            <span class="flex items-center gap-1 text-emerald-700 font-bold"><Icon name="check" class="w-3.5 h-3.5 text-emerald-700" strokeWidth={2.5} /> Pass</span>
           </div>
           <div class="p-3 bg-surface rounded-xl border border-hairline flex items-center justify-between">
             <span class="text-slate-700 font-medium">No Complex Multi-Column Tables</span>
-            <span class="text-emerald-700 font-bold">✓ Pass</span>
+            <span class="flex items-center gap-1 text-emerald-700 font-bold"><Icon name="check" class="w-3.5 h-3.5 text-emerald-700" strokeWidth={2.5} /> Pass</span>
           </div>
           <div class="p-3 bg-surface rounded-xl border border-hairline flex items-center justify-between">
             <span class="text-slate-700 font-medium">Quantifiable Metrics in Experience</span>
-            <span class="text-emerald-700 font-bold">✓ Pass (9 Metrics)</span>
+            <span class="flex items-center gap-1 text-emerald-700 font-bold"><Icon name="check" class="w-3.5 h-3.5 text-emerald-700" strokeWidth={2.5} /> Pass (9 Metrics)</span>
           </div>
         </div>
       </div>

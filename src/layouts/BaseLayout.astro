@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { Show, SignInButton, UserButton } from '@clerk/astro/components';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -11,13 +12,13 @@ interface Props {
 const { title, activePage = 'dashboard', subtitle = 'Enterprise Productivity OS' } = Astro.props;
 
 const navItems = [
-  { label: 'Command Center', href: '/dashboard', icon: '⚡', id: 'dashboard', badge: 'Live' },
-  { label: 'PDF Studio', href: '/pdf-tools', icon: '📄', id: 'pdf-tools', badge: '7 Tools' },
-  { label: 'ATS Resume AI', href: '/ats-checker', icon: '🎯', id: 'ats-checker', badge: 'AI Pro' },
-  { label: 'Campus Attendance', href: '/attendance', icon: '📋', id: 'attendance', badge: 'Active' },
-  { label: 'Faculty Diary', href: '/faculty-diary', icon: '📚', id: 'faculty-diary', badge: 'Academic' },
-  { label: 'Unified Analytics', href: '/analytics', icon: '📈', id: 'analytics' },
-  { label: 'Workspace Settings', href: '/settings', icon: '⚙️', id: 'settings' },
+  { label: 'Command Center', href: '/dashboard', icon: 'bolt', id: 'dashboard', badge: 'Live' },
+  { label: 'PDF Studio', href: '/pdf-tools', icon: 'pdf', id: 'pdf-tools', badge: '7 Tools' },
+  { label: 'ATS Resume AI', href: '/ats-checker', icon: 'ats', id: 'ats-checker', badge: 'AI Pro' },
+  { label: 'Campus Attendance', href: '/attendance', icon: 'attendance', id: 'attendance', badge: 'Active' },
+  { label: 'Faculty Diary', href: '/faculty-diary', icon: 'diary', id: 'faculty-diary', badge: 'Academic' },
+  { label: 'Unified Analytics', href: '/analytics', icon: 'analytics', id: 'analytics' },
+  { label: 'Workspace Settings', href: '/settings', icon: 'settings', id: 'settings' },
 ];
 ---
 
@@ -79,7 +80,7 @@ const navItems = [
               }`}
             >
               <div class="flex items-center gap-3">
-                <span class="text-base group-hover:scale-110 transition-transform">{item.icon}</span>
+                <Icon name={item.icon} class={`w-4 h-4 group-hover:scale-110 transition-transform ${activePage === item.id ? 'text-white' : 'text-slate-500 group-hover:text-ink'}`} />
                 <span>{item.label}</span>
               </div>
               {item.badge && (
@@ -101,9 +102,9 @@ const navItems = [
           </div>
           <a
             href="/"
-            class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-surface hover:text-ink transition-all"
+            class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-surface hover:text-ink transition-all group"
           >
-            <span>🌐</span>
+            <Icon name="globe" class="w-4 h-4 text-slate-500 group-hover:text-ink" />
             <span>Public Landing Page</span>
           </a>
         </nav>
@@ -214,17 +215,26 @@ const navItems = [
                 </div>
                 <div class="space-y-2 text-xs">
                   <div class="p-2.5 bg-surface rounded-xl border border-hairline-soft">
-                    <p class="font-semibold text-ink">✨ PDF Batch Compressed</p>
+                    <div class="flex items-center gap-1.5 font-semibold text-ink">
+                      <Icon name="sparkles" class="w-3.5 h-3.5 text-brand-blue shrink-0" />
+                      <span>PDF Batch Compressed</span>
+                    </div>
                     <p class="text-slate-500 text-[11px] mt-0.5">3 files compressed (saved 12.4 MB)</p>
                     <span class="text-[9px] text-slate-400">2 min ago</span>
                   </div>
                   <div class="p-2.5 bg-surface rounded-xl border border-hairline-soft">
-                    <p class="font-semibold text-ink">🎯 ATS Resume Scan Done</p>
+                    <div class="flex items-center gap-1.5 font-semibold text-ink">
+                      <Icon name="target" class="w-3.5 h-3.5 text-brand-teal shrink-0" />
+                      <span>ATS Resume Scan Done</span>
+                    </div>
                     <p class="text-slate-500 text-[11px] mt-0.5">Score: 84/100 (Strong Match)</p>
                     <span class="text-[9px] text-slate-400">18 min ago</span>
                   </div>
                   <div class="p-2.5 bg-surface rounded-xl border border-hairline-soft">
-                    <p class="font-semibold text-ink">📋 Attendance Synchronized</p>
+                    <div class="flex items-center gap-1.5 font-semibold text-ink">
+                      <Icon name="clipboard-check" class="w-3.5 h-3.5 text-brand-yellow-dark shrink-0" />
+                      <span>Attendance Synchronized</span>
+                    </div>
                     <p class="text-slate-500 text-[11px] mt-0.5">CS-301 Data Structures marked present</p>
                     <span class="text-[9px] text-slate-400">1 hour ago</span>
                   </div>
@@ -237,7 +247,7 @@ const navItems = [
               href="/pdf-tools"
               class="btn-primary flex items-center gap-1.5"
             >
-              <span>+</span>
+              <Icon name="plus" class="w-3.5 h-3.5" />
               <span>Quick Action</span>
             </a>
           </div>
@@ -284,48 +294,60 @@ const navItems = [
 
         <div class="p-3 max-h-96 overflow-y-auto space-y-1 text-sm" id="cmd-results">
           <div class="text-[11px] font-semibold text-slate-400 uppercase px-3 py-1">Quick Navigation</div>
-          <a href="/dashboard" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors">
-            <span>⚡</span>
+          <a href="/dashboard" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors group">
+            <span class="p-1.5 rounded-lg bg-yellow-50 border border-yellow-200/60 text-brand-yellow-dark group-hover:scale-105 transition-transform">
+              <Icon name="bolt" class="w-4 h-4" />
+            </span>
             <div class="flex-1">
               <div class="font-semibold text-xs text-ink">Command Center Dashboard</div>
               <div class="text-[11px] text-slate-500">View overall analytics and metrics</div>
             </div>
             <kbd class="text-[10px] text-slate-400 font-mono bg-surface border border-hairline px-1.5 py-0.5 rounded">/dashboard</kbd>
           </a>
-          <a href="/pdf-tools" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors">
-            <span>📄</span>
+          <a href="/pdf-tools" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors group">
+            <span class="p-1.5 rounded-lg bg-indigo-50 border border-indigo-200/60 text-brand-blue group-hover:scale-105 transition-transform">
+              <Icon name="pdf" class="w-4 h-4" />
+            </span>
             <div class="flex-1">
               <div class="font-semibold text-xs text-ink">PDF Power Studio</div>
               <div class="text-[11px] text-slate-500">Merge, split, compress, watermark, OCR</div>
             </div>
             <kbd class="text-[10px] text-slate-400 font-mono bg-surface border border-hairline px-1.5 py-0.5 rounded">/pdf-tools</kbd>
           </a>
-          <a href="/ats-checker" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors">
-            <span>🎯</span>
+          <a href="/ats-checker" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors group">
+            <span class="p-1.5 rounded-lg bg-teal-50 border border-teal-200/60 text-brand-moss-dark group-hover:scale-105 transition-transform">
+              <Icon name="target" class="w-4 h-4" />
+            </span>
             <div class="flex-1">
               <div class="font-semibold text-xs text-ink">ATS Resume Intelligence</div>
               <div class="text-[11px] text-slate-500">Score & optimize resumes for job descriptions</div>
             </div>
             <kbd class="text-[10px] text-slate-400 font-mono bg-surface border border-hairline px-1.5 py-0.5 rounded">/ats-checker</kbd>
           </a>
-          <a href="/attendance" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors">
-            <span>📋</span>
+          <a href="/attendance" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors group">
+            <span class="p-1.5 rounded-lg bg-brand-yellow-light border border-brand-yellow/40 text-brand-yellow-dark group-hover:scale-105 transition-transform">
+              <Icon name="attendance" class="w-4 h-4" />
+            </span>
             <div class="flex-1">
               <div class="font-semibold text-xs text-ink">Campus Attendance Manager</div>
               <div class="text-[11px] text-slate-500">Mark student presence, batches, and exports</div>
             </div>
             <kbd class="text-[10px] text-slate-400 font-mono bg-surface border border-hairline px-1.5 py-0.5 rounded">/attendance</kbd>
           </a>
-          <a href="/faculty-diary" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors">
-            <span>📚</span>
+          <a href="/faculty-diary" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors group">
+            <span class="p-1.5 rounded-lg bg-rose-50 border border-rose-200/60 text-brand-coral-dark group-hover:scale-105 transition-transform">
+              <Icon name="diary" class="w-4 h-4" />
+            </span>
             <div class="flex-1">
               <div class="font-semibold text-xs text-ink">Faculty Academic Diary</div>
               <div class="text-[11px] text-slate-500">Timetable, lesson plans, research & remarks</div>
             </div>
             <kbd class="text-[10px] text-slate-400 font-mono bg-surface border border-hairline px-1.5 py-0.5 rounded">/faculty-diary</kbd>
           </a>
-          <a href="/analytics" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors">
-            <span>📈</span>
+          <a href="/analytics" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:bg-surface hover:text-ink transition-colors group">
+            <span class="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200/60 text-emerald-700 group-hover:scale-105 transition-transform">
+              <Icon name="analytics" class="w-4 h-4" />
+            </span>
             <div class="flex-1">
               <div class="font-semibold text-xs text-ink">Unified Insights & Reporting</div>
               <div class="text-[11px] text-slate-500">Performance metrics across all tools</div>
@@ -348,14 +370,17 @@ const navItems = [
         toast.className = `px-4 py-3 rounded-xl text-xs font-semibold shadow-modal flex items-center gap-2.5 transform transition-all duration-300 pointer-events-auto border ${
           type === 'success' ? 'bg-white border-emerald-300 text-emerald-800 shadow-emerald-500/10' :
           type === 'error' ? 'bg-white border-rose-300 text-rose-800 shadow-rose-500/10' :
-          'bg-white border-brand-blue/30 text-ink shadow-brand-blue/10'
-        }`;
-        const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
-        toast.innerHTML = `<span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${
+        const iconSvg = type === 'success'
+          ? '<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+          : type === 'error'
+          ? '<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>'
+          : '<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+
+        toast.innerHTML = `<span class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
           type === 'success' ? 'bg-emerald-100 text-emerald-700' :
           type === 'error' ? 'bg-rose-100 text-rose-700' :
           'bg-brand-blue-light text-brand-blue'
-        }">${icon}</span> <span class="font-medium">${message}</span>`;
+        }">${iconSvg}</span> <span class="font-medium">${message}</span>`;
         container.appendChild(toast);
         setTimeout(() => {
           toast.style.opacity = '0';
