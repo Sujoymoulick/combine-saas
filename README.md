@@ -46,7 +46,7 @@ cd "combine-saas"
 # Install dependencies (if not already installed)
 npm install
 
-# Start development server on port 3000
+# Start development server on port 4321
 npm run dev
 
 # Build for production

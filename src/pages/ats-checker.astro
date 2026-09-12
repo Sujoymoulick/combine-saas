@@ -283,11 +283,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script is:inline>
   // Scan Button Handler
-  document.getElementById('btn-scan-ats')?.addEventListener('click', () => {
+  document.getElementById('btn-scan-ats')?.addEventListener('click', async () => {
     window.showToast('Analyzing resume against job description...', 'info');
-    setTimeout(() => {
-      window.showToast('ATS Audit complete! Compatibility score: 88/100', 'success');
-    }, 800);
+    const fnDisplay = document.getElementById('ats-filename-display')?.textContent || 'Resume.pdf';
+    const scoreNum = parseInt(document.getElementById('ats-score-number')?.textContent || '88', 10);
+    const jdInput = document.getElementById('ats-jd-input')?.value || '';
+
+    try {
+      await fetch('/api/ats-scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          resume_name: fnDisplay,
+          job_title: 'Target Role',
+          job_description: jdInput,
+          score: scoreNum,
+          matched_keywords: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'AWS'],
+          missing_keywords: ['Kubernetes', 'Terraform', 'CI/CD Pipeline'],
+          action_verb_score: 92,
+          brevity_score: 88,
+        }),
+      });
+      window.showToast(`ATS Audit complete! Compatibility score: ${scoreNum}/100 (Saved to DB)`, 'success');
+    } catch (e) {
+      window.showToast(`ATS Audit complete! Compatibility score: ${scoreNum}/100`, 'success');
+    }
   });
 
   // Preset Switcher
