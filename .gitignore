@@ -23,3 +23,6 @@ pnpm-debug.log*
 # IDE
 .vscode/
 .idea/
+
+# clerk configuration (can include secrets)
+/.clerk/

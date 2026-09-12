@@ -1,17 +1,17 @@
 import type { APIRoute } from 'astro';
 import {
-  addMentorshipRemark,
-  deleteMentorshipRemark,
-  getMentorshipRemarks,
-  updateMentorshipRemark,
+  addCourseMaterial,
+  deleteCourseMaterial,
+  getCourseMaterials,
+  updateCourseMaterial,
 } from '../../../lib/supabase';
 
 export const GET: APIRoute = async ({ locals }) => {
   try {
     const auth = locals.auth();
     const userId = auth?.userId || 'guest_user';
-    const remarks = await getMentorshipRemarks(userId);
-    return new Response(JSON.stringify({ success: true, data: remarks }), {
+    const materials = await getCourseMaterials(userId);
+    return new Response(JSON.stringify({ success: true, data: materials }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -26,21 +26,21 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const userId = auth?.userId || 'guest_user';
 
     const body = await request.json();
-    const { student_name, category, notes, type, remark_date } = body;
+    const { course_name, title, category, file_url, file_size } = body;
 
-    if (!student_name || !notes) {
-      return new Response(JSON.stringify({ error: 'Student name and notes are required' }), { status: 400 });
+    if (!course_name || !title) {
+      return new Response(JSON.stringify({ error: 'Course name and title are required' }), { status: 400 });
     }
 
-    const remark = await addMentorshipRemark(userId, {
-      student_name,
-      category: category || 'General Note',
-      notes,
-      type: type || 'positive',
-      remark_date,
+    const material = await addCourseMaterial(userId, {
+      course_name,
+      title,
+      category,
+      file_url,
+      file_size,
     });
 
-    return new Response(JSON.stringify({ success: true, data: remark }), {
+    return new Response(JSON.stringify({ success: true, data: material }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -55,18 +55,17 @@ export const PUT: APIRoute = async ({ request, locals }) => {
     const userId = auth?.userId || 'guest_user';
 
     const body = await request.json();
-    const { id, student_name, category, notes, type, remark_date } = body;
+    const { id, course_name, title, category, file_size } = body;
 
     if (!id) {
       return new Response(JSON.stringify({ error: 'ID is required for update' }), { status: 400 });
     }
 
-    const updated = await updateMentorshipRemark(userId, id, {
-      student_name,
+    const updated = await updateCourseMaterial(userId, id, {
+      course_name,
+      title,
       category,
-      notes,
-      type,
-      remark_date,
+      file_size,
     });
 
     return new Response(JSON.stringify({ success: true, data: updated }), {
@@ -90,7 +89,7 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       return new Response(JSON.stringify({ error: 'ID is required for delete' }), { status: 400 });
     }
 
-    const success = await deleteMentorshipRemark(userId, id);
+    const success = await deleteCourseMaterial(userId, id);
     return new Response(JSON.stringify({ success }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
