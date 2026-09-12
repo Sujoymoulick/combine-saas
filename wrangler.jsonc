@@ -1,11 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "combine-saas",
+  "main": "./dist/_worker.js/index.js",
   "compatibility_date": "2024-09-23",
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "pages_build_output_dir": "dist",
+  "assets": {
+    "directory": "./dist"
+  },
   "observability": {
     "enabled": true
   }
