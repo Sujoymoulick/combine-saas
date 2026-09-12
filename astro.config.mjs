@@ -1,16 +1,18 @@
 import clerk from '@clerk/astro';
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import node from '@astrojs/node';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   output: 'server',
-  adapter: node({
-    mode: 'standalone',
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+    imageService: 'compile',
   }),
-  server: {
-    port: 4321,
-    host: true,
+  image: {
+    service: passthroughImageService(),
   },
   integrations: [
     clerk({
