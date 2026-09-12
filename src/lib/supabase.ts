@@ -393,7 +393,6 @@ export async function saveAttendanceRecords(
   }
 }
 
-// 5. Faculty Diary (Timetable, Syllabus, Mentorship, Materials, Research)
 export async function getFacultyTimetable(userId: string) {
   if (!supabase) return [];
   try {
@@ -561,6 +560,37 @@ export async function addMentorshipRemark(
   }
 }
 
+export async function addSyllabusUnit(
+  userId: string,
+  unit: { unit_title: string; progress?: number; topics?: Array<{ name: string; completed: boolean }> | string[] }
+) {
+  if (!supabase) return null;
+  try {
+    const formattedTopics = Array.isArray(unit.topics)
+      ? unit.topics.map((t) => (typeof t === 'string' ? { name: t, completed: false } : t))
+      : [];
+    const { data, error } = await supabase
+      .from('syllabus_units')
+      .insert({
+        user_id: userId,
+        unit_title: unit.unit_title,
+        progress: unit.progress || 0,
+        topics: formattedTopics,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase addSyllabusUnit error:', error.message);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('Supabase addSyllabusUnit error:', err);
+    return null;
+  }
+}
+
 export async function getCourseMaterials(userId: string) {
   if (!supabase) return [];
   try {
@@ -581,6 +611,45 @@ export async function getCourseMaterials(userId: string) {
   }
 }
 
+export async function addCourseMaterial(
+  userId: string,
+  material: { course_name: string; title: string; category?: string; file_url?: string; file_size?: string }
+) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('course_materials')
+      .insert({
+        user_id: userId,
+        course_name: material.course_name,
+        title: material.title,
+        category: material.category || 'Notes',
+        file_url: material.file_url || '',
+        file_size: material.file_size || '1.5 MB',
+        downloads: 0,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase addCourseMaterial error:', error.message);
+      return null;
+    }
+
+    await logActivity(userId, {
+      tool: 'Faculty Diary',
+      action: `Uploaded resource: ${material.title} (${material.course_name})`,
+      status: 'Uploaded',
+      log_type: 'faculty',
+    });
+
+    return data;
+  } catch (err) {
+    console.warn('Supabase addCourseMaterial error:', err);
+    return null;
+  }
+}
+
 export async function getResearchPapers(userId: string) {
   if (!supabase) return [];
   try {
@@ -598,6 +667,248 @@ export async function getResearchPapers(userId: string) {
   } catch (err) {
     console.warn('Supabase getResearchPapers error:', err);
     return [];
+  }
+}
+
+export async function updateFacultyTimetable(
+  userId: string,
+  id: string,
+  updates: Partial<{ day_of_week: string; time_slot: string; course_name: string; topic: string; room: string; session_type: string }>
+) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('faculty_timetable')
+      .update(updates)
+      .eq('id', id)
+      .eq('user_id', userId)
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase updateFacultyTimetable error:', error.message);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('Supabase updateFacultyTimetable error:', err);
+    return null;
+  }
+}
+
+export async function deleteFacultyTimetable(userId: string, id: string) {
+  if (!supabase) return true;
+  try {
+    const { error } = await supabase
+      .from('faculty_timetable')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.warn('Supabase deleteFacultyTimetable error:', error.message);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.warn('Supabase deleteFacultyTimetable error:', err);
+    return false;
+  }
+}
+
+export async function deleteSyllabusUnit(userId: string, id: string) {
+  if (!supabase) return true;
+  try {
+    const { error } = await supabase
+      .from('syllabus_units')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.warn('Supabase deleteSyllabusUnit error:', error.message);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.warn('Supabase deleteSyllabusUnit error:', err);
+    return false;
+  }
+}
+
+export async function updateMentorshipRemark(
+  userId: string,
+  id: string,
+  updates: Partial<{ student_name: string; category: string; notes: string; type: string; remark_date: string }>
+) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('mentorship_remarks')
+      .update(updates)
+      .eq('id', id)
+      .eq('user_id', userId)
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase updateMentorshipRemark error:', error.message);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('Supabase updateMentorshipRemark error:', err);
+    return null;
+  }
+}
+
+export async function deleteMentorshipRemark(userId: string, id: string) {
+  if (!supabase) return true;
+  try {
+    const { error } = await supabase
+      .from('mentorship_remarks')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.warn('Supabase deleteMentorshipRemark error:', error.message);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.warn('Supabase deleteMentorshipRemark error:', err);
+    return false;
+  }
+}
+
+export async function updateCourseMaterial(
+  userId: string,
+  id: string,
+  updates: Partial<{ course_name: string; title: string; category: string; file_size: string }>
+) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('course_materials')
+      .update(updates)
+      .eq('id', id)
+      .eq('user_id', userId)
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase updateCourseMaterial error:', error.message);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('Supabase updateCourseMaterial error:', err);
+    return null;
+  }
+}
+
+export async function deleteCourseMaterial(userId: string, id: string) {
+  if (!supabase) return true;
+  try {
+    const { error } = await supabase
+      .from('course_materials')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.warn('Supabase deleteCourseMaterial error:', error.message);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.warn('Supabase deleteCourseMaterial error:', err);
+    return false;
+  }
+}
+
+export async function updateResearchPaper(
+  userId: string,
+  id: string,
+  updates: Partial<{ title: string; journal: string; status: string; citations: number | string; publication_date: string }>
+) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('research_papers')
+      .update(updates)
+      .eq('id', id)
+      .eq('user_id', userId)
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase updateResearchPaper error:', error.message);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('Supabase updateResearchPaper error:', err);
+    return null;
+  }
+}
+
+export async function deleteResearchPaper(userId: string, id: string) {
+  if (!supabase) return true;
+  try {
+    const { error } = await supabase
+      .from('research_papers')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.warn('Supabase deleteResearchPaper error:', error.message);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.warn('Supabase deleteResearchPaper error:', err);
+    return false;
+  }
+}
+
+export async function addResearchPaper(
+  userId: string,
+  paper: { title: string; journal: string; status?: string; citations?: number; publication_date?: string }
+) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('research_papers')
+      .insert({
+        user_id: userId,
+        title: paper.title,
+        journal: paper.journal,
+        status: paper.status || 'Published',
+        citations: paper.citations || 0,
+        publication_date: paper.publication_date || new Date().toISOString().split('T')[0],
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase addResearchPaper error:', error.message);
+      return null;
+    }
+
+    await logActivity(userId, {
+      tool: 'Faculty Diary',
+      action: `Added research paper: "${paper.title.slice(0, 45)}..."`,
+      status: 'Published',
+      log_type: 'faculty',
+    });
+
+    return data;
+  } catch (err) {
+    console.warn('Supabase addResearchPaper error:', err);
+    return null;
   }
 }
 
