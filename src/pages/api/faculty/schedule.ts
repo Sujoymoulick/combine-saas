@@ -1,5 +1,10 @@
 import type { APIRoute } from 'astro';
-import { addFacultyTimetable, getFacultyTimetable } from '../../../lib/supabase';
+import {
+  addFacultyTimetable,
+  deleteFacultyTimetable,
+  getFacultyTimetable,
+  updateFacultyTimetable,
+} from '../../../lib/supabase';
 
 export const GET: APIRoute = async ({ locals }) => {
   try {
@@ -37,6 +42,58 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     return new Response(JSON.stringify({ success: true, data: item }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error: any) {
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+  }
+};
+
+export const PUT: APIRoute = async ({ request, locals }) => {
+  try {
+    const auth = locals.auth();
+    const userId = auth?.userId || 'guest_user';
+
+    const body = await request.json();
+    const { id, day_of_week, time_slot, course_name, topic, room, session_type } = body;
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'ID is required for update' }), { status: 400 });
+    }
+
+    const updated = await updateFacultyTimetable(userId, id, {
+      day_of_week,
+      time_slot,
+      course_name,
+      topic,
+      room,
+      session_type,
+    });
+
+    return new Response(JSON.stringify({ success: true, data: updated }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error: any) {
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+  }
+};
+
+export const DELETE: APIRoute = async ({ request, locals }) => {
+  try {
+    const auth = locals.auth();
+    const userId = auth?.userId || 'guest_user';
+
+    const body = await request.json();
+    const { id } = body;
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'ID is required for delete' }), { status: 400 });
+    }
+
+    const success = await deleteFacultyTimetable(userId, id);
+    return new Response(JSON.stringify({ success }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
